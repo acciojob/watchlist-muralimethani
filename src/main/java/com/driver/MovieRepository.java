@@ -40,6 +40,7 @@ public class MovieRepository {
             List<String> currentMovies = new ArrayList<>();
 
             if (directorAndMovie.containsKey(director)){
+                currentMovies = directorAndMovie.get(director);
                 currentMovies.add(movie);
                 directorAndMovie.put(director, currentMovies);
             }
