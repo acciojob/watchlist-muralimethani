@@ -75,7 +75,7 @@ public class MovieRepository {
 
     public void deleteDirectorByName(String name){
         List<String > movies = new ArrayList<>();
-        if (directorDb.containsKey(name)){
+        if (directorAndMovie.containsKey(name)){
             movies = directorAndMovie.get(movies);
 
             for (String movie : movies){
