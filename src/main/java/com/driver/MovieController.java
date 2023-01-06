@@ -42,9 +42,10 @@ public class MovieController {
 
     //4.getMovieByName
     @GetMapping("/get-movie-by-name/{name}")
-    public  ResponseEntity<Movie> getMovieByName(@PathVariable("name") String name){
+    public  ResponseEntity<Movie> getMovieByName(@PathVariable String name){
         //public  ResponseEntity<Student> getByPath(@PathVariable("admNo") Integer admNo){
-        return  new ResponseEntity<>(movieService.getMovieByName(name), HttpStatus.CREATED);
+        Movie movie =movieService.getMovieByName(name);
+        return  new ResponseEntity<>(movie, HttpStatus.CREATED);
     }
 
 
@@ -63,10 +64,12 @@ public class MovieController {
         return new ResponseEntity<>("New movie-director pair added successfully", HttpStatus.CREATED);
     }
 
+
+    //6. getMoviesByDirectorName
     @GetMapping ("/get-movies-by-director-name/{director}")
-    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable String  name){
-        List<String> moviesList = new ArrayList<>();
-        moviesList = movieService.getMoviesByDirectorName(name);
+    public ResponseEntity<List<String>> getMoviesByDirectorName(@PathVariable("name") String  name){
+        List<String> moviesList =new ArrayList<>();
+               moviesList= movieService.getMoviesByDirectorName(name);
         return  new ResponseEntity<>(moviesList,HttpStatus.CREATED);
     }
 

@@ -23,7 +23,7 @@ public class MovieRepository {
 
     public void addMovie(Movie movie){
         String movieName = movie.getName();
-         movieDb.put(movie.getName(), movie);
+         movieDb.put(movieName, movie);
 
     }
 
@@ -36,21 +36,25 @@ public class MovieRepository {
 
     //3.addMovieDirectorPair
     public void addMovieDirectorPair(String movie, String director){
-        if (movieDb.containsKey(movie) && directorDb.containsKey(director)){
-            List<String> currentMovies = new ArrayList<>();
+        if(movieDb.containsKey(movie)&&directorDb.containsKey(director)){
 
-            if (directorAndMovie.containsKey(director)){
-                currentMovies = directorAndMovie.get(director);
-                currentMovies.add(movie);
-                directorAndMovie.put(director, currentMovies);
+            List<String> currentMoviesByDirector = new ArrayList<>();
+
+            if(directorAndMovie.containsKey(director))
+                currentMoviesByDirector = directorAndMovie.get(director);
+
+            currentMoviesByDirector.add(movie);
+
+            directorAndMovie.put(director,currentMoviesByDirector);
             }
 
         }
-    }
+
     //4.getMovieByName
     public Movie getMovieByName(String movie){
-        Movie relMovie = movieDb.get(movie);
-        return relMovie;
+//        Movie relMovie = movieDb.get(movie);
+//        return relMovie;
+        return movieDb.get(movie);
     }
 
     //5.getDirectorByName
@@ -60,11 +64,8 @@ public class MovieRepository {
 
     //6.getMoviesByDirectorName
     public List<String> getMoviesByDirectorName (String directorName){
-        List<String> moviesList = new ArrayList<>();
-        if (directorAndMovie.containsKey(directorName)){
-            moviesList=directorAndMovie.get(directorName);
-        }
-
+        List<String> moviesList = new ArrayList<String>();
+        if(directorAndMovie.containsKey(directorName)) moviesList = directorAndMovie.get(directorName);
         return moviesList;
     }
 
